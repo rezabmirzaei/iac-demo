@@ -45,7 +45,7 @@ The terraform script will create a resource group in the Azure subscription you 
 * When done, in the terminal type:
   * ``terraform apply``
 * Follow the instructions and choose to apply the proposed changes (if you wish!).
-* Validate the result by chacking your Azure subscription: You have a new reource group in your subscription.
+* Validate the result by checking your Azure subscription: You have a new reource group in your subscription.
 * When done, in the terminal type:
   * ``terraform destroy``
 * Validate the result again: The previously created resource group is deleted.
