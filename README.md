@@ -22,6 +22,8 @@ Basic knowledge of Azure is required. In addition, you must have the following i
   * ``az ad sp create-for-rbac -n "<YOUR_SPN>" --role="Contributor" --scopes="/subscriptions/<YOUR_SUBSCRIPTION_ID>"
 ``
 
+Heads up! Make sure the service principal has privileges to create resources in your Azure subscription.
+
 ### Terraform
 
 Terraform needs a way to communicate with your Azure account/subscription.
