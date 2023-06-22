@@ -37,6 +37,8 @@ You can find your __<SPN_APPID_VALUE>__ in the Azure portal, under _Azure Active
 
 The __<SPN_CLIENT_SECRET_VALUE>__ can be found under the same path in the Azure portal, by selecting the service principal and opening its _Certificates & secrets_ tab.
 
+Read more on [Authenticate Terraform to Azure](https://learn.microsoft.com/en-us/azure/developer/terraform/authenticate-to-azure?tabs=bash).
+
 The terraform script will create a resource group in the Azure subscription you have specified. To run it:
 
 * Open a terminal in the ``terraform`` folder of this prject.
