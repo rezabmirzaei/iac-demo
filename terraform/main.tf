@@ -21,8 +21,8 @@ resource "random_string" "random_suffix" {
 resource "azurerm_resource_group" "rg" {
   name     = "rg-iac-demo-terraform-${random_string.random_suffix.result}"
   location = "NorwayEast"
-  tags = {
+  /*tags = {
     "Owner" = "reza.b.mirzaei"
     "Env"   = "test"
-  }
+  }*/
 }
