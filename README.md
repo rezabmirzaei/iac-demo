@@ -57,3 +57,4 @@ The terraform script will create a resource group in the Azure subscription you 
 ### Bicep
 
 [TODO]
+``az deployment sub create -l <LOCATION> --template-file main.bicep``
