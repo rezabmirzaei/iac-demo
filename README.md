@@ -57,4 +57,13 @@ The terraform script will create a resource group in the Azure subscription you 
 ### Bicep
 
 [TODO]
-``az deployment sub create -l <LOCATION> --template-file main.bicep``
+
+* In the terminal type:
+* ``az deployment sub create -l <LOCATION> --template-file main.bicep``
+* Validate the result by checking your Azure subscription: You have a new reource group in your subscription.
+* ``az deployment group create -g rg-iac-demo-bicep-xxx --template-file storage.bicep``
+* Validate the result by checking your Azure subscription: You have a new storage account in your previously created resource group.
+
+To check potential changes, use the ``what-if`` flag:
+* ``az deployment sub what-if -l <LOCATION> --template-file main.bicep``
+* ``az deployment group what-if -g rg-iac-demo-bicep-xxx --template-file storage.bicep``

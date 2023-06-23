@@ -1,7 +1,3 @@
-@minLength(3)
-@maxLength(11)
-param storagePrefix string
-
 @allowed([
   'Standard_LRS'
   'Standard_GRS'
@@ -13,13 +9,14 @@ param storagePrefix string
   'Standard_RAGZRS'
 ])
 param storageSKU string = 'Standard_LRS'
-
 param location string = resourceGroup().location
+param resourceTags object = {
+  Owner: 'reza.b.mirzaei@outlook.com'
+  Env: 'test'
+}
 
-var uniqueStorageName = '${storagePrefix}${uniqueString(resourceGroup().id)}'
-
-resource stg 'Microsoft.Storage/storageAccounts@2022-09-01' = {
-  name: uniqueStorageName
+resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
+  name: 'stiacdemobicep001'
   location: location
   sku: {
     name: storageSKU
@@ -28,4 +25,5 @@ resource stg 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   properties: {
     supportsHttpsTrafficOnly: true
   }
+  tags: resourceTags
 }

@@ -10,6 +10,7 @@ param resourceTags object = {
 
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   name: 'rg-iac-demo-bicep-${randomString}'
+  //name: 'rg-iac-demo-bicep'
   location: location
   tags: resourceTags
 }
