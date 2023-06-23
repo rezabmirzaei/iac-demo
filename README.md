@@ -22,7 +22,9 @@ Basic knowledge of Azure is required. In addition, you must have the following i
   * ``az ad sp create-for-rbac -n "<YOUR_SPN>" --role="Contributor" --scopes="/subscriptions/<YOUR_SUBSCRIPTION_ID>"
 ``
 
-Heads up! Make sure the service principal has privileges to create resources in your Azure subscription.
+__Finally, log out of Azure (``az logout``) to avoid any mishaps using your own login credentials.__ We will use the service principal from now on.
+
+Heads up! Make sure the service principal has privileges to create resources in your Azure subscription (e.g. ``--role="Contributor"``).
 
 ### Terraform
 
@@ -41,7 +43,7 @@ The __<SPN_CLIENT_SECRET_VALUE>__ can be found under the same path in the Azure 
 
 Read more on [Authenticate Terraform to Azure](https://learn.microsoft.com/en-us/azure/developer/terraform/authenticate-to-azure?tabs=bash).
 
-The terraform script will create a resource group in the Azure subscription you have specified. To run it:
+The __main.tf__ terraform script will create a resource group in the Azure subscription you have specified. To run it:
 
 * Open a terminal in the ``terraform`` folder of this prject.
 * In the terminal type:
@@ -56,14 +58,26 @@ The terraform script will create a resource group in the Azure subscription you 
 
 ### Bicep
 
-[TODO]
+Authenticate using the service principal created earlier and set the correct tenant and subscription:
+* ``az login --service-principal -u <SPN_APPID_VALUE> -p <SPN_CLIENT_SECRET_VALUE> --tenant <YOUR_TENANT_ID>``
+* ``az account set --subscription <YOUR_SUBSCRIPTION_ID>``
 
+Head up! You can (should) use the environment variables set in the previous step, e.g. (PowerShell):
+* ``az login --service-principal -u ${env:ARM_CLIENT_ID} -p ${env:ARM_CLIENT_SECRET} --tenant ${env:ARM_TENANT_ID}``
+* ``az account set --subscription ${env:ARM_SUBSCRIPTION_ID}``
+
+The __main.bicep__ script will create a resource group in the Azure subscription you have specified. To run it:
+
+* Open a terminal in the ``bicep`` folder of this prject.
 * In the terminal type:
   * ``az deployment sub create -l <LOCATION> --template-file main.bicep``
 * Validate the result by checking your Azure subscription: You have a new reource group in your subscription.
+* Create a storage account in the newly created resource grouo. In the terminal type:
   * ``az deployment group create -g rg-iac-demo-bicep-xxx --template-file storage.bicep``
 * Validate the result by checking your Azure subscription: You have a new storage account in your previously created resource group.
 
 To check potential changes, use the ``what-if`` flag, e.g.:
 * ``az deployment sub what-if -l <LOCATION> --template-file main.bicep``
 * ``az deployment group what-if -g rg-iac-demo-bicep-xxx --template-file storage.bicep``
+
+Heads up! Remember to delete the created resources in the Azure portal.
