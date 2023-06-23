@@ -14,3 +14,13 @@ resource resourceGroup 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   location: location
   tags: resourceTags
 }
+
+/*
+module storageAccount './storage.bicep' = {
+  name: 'storageAccount'
+  scope: resourceGroup
+  params: {
+    location: location
+  }
+}
+*/
