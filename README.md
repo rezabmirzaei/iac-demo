@@ -67,19 +67,23 @@ Head up! You can (should) use the environment variables set in the previous step
 * ``az login --service-principal -u ${env:ARM_CLIENT_ID} -p ${env:ARM_CLIENT_SECRET} --tenant ${env:ARM_TENANT_ID}``
 * ``az account set --subscription ${env:ARM_SUBSCRIPTION_ID}``
 
+Lastly, create the following environment variable containing the name of the resource group to create and subsequently create resources in:
+```
+RG_NAME = "<ANY_VALID_RG_NAME>"
+```
 The __main.bicep__ script will create a resource group in the Azure subscription you have specified. To run it:
 
 * Open a terminal in the ``bicep`` folder of this prject.
 * In the terminal type:
-  * ``az deployment sub create -l <LOCATION> --template-file main.bicep``
+  * ``az deployment sub create -l <LOCATION> --template-file main.bicep --parameters rgName=${env:RG_NAME}``
 * Validate the result by checking your Azure subscription: You have a new reource group in your subscription.
 * Create a storage account in the newly created resource grouo. In the terminal type:
-  * ``az deployment group create -g rg-iac-demo-bicep-xxx --template-file storage.bicep``
+  * ``az deployment group create -g ${env:RG_NAME} --template-file storage.bicep``
 * Validate the result by checking your Azure subscription: You have a new storage account in your previously created resource group.
 
 To check potential changes, use the ``what-if`` flag, e.g.:
-* ``az deployment sub what-if -l <LOCATION> --template-file main.bicep``
-* ``az deployment group what-if -g rg-iac-demo-bicep-xxx --template-file storage.bicep``
+* ``az deployment sub what-if -l <LOCATION> --template-file main.bicep --parameters rgName=${env:RG_NAME}``
+* ``az deployment group what-if -g ${env:RG_NAME}-xxx --template-file storage.bicep`` (you will need the actual RG name that was created)
 
 Heads up! Remember to delete the created resources in the Azure portal or by running
-* az group delete --name <RG_NAME>
+* ``az group delete --name ${env:RG_NAME}-xxx``
