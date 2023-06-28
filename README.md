@@ -78,7 +78,7 @@ The __main.bicep__ script will create a resource group in the Azure subscription
   * ``az deployment sub create -l <LOCATION> --template-file main.bicep --parameters rgName=${env:RG_NAME}``
 * Validate the result by checking your Azure subscription: You have a new reource group in your subscription.
 * Create a storage account in the newly created resource grouo. In the terminal type:
-  * ``az deployment group create -g ${env:RG_NAME} --template-file storage.bicep``
+  * ``az deployment group create -g ${env:RG_NAME}-xxx --template-file storage.bicep`` (you will need the actual RG name that was created)
 * Validate the result by checking your Azure subscription: You have a new storage account in your previously created resource group.
 
 To check potential changes, use the ``what-if`` flag, e.g.:
