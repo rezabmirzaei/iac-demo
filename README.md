@@ -10,6 +10,7 @@ Basic knowledge of Azure is required. In addition, you must have the following i
 * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/)
 * [Azure account](https://azure.microsoft.com/en-us/free/) and [subscription](https://learn.microsoft.com/en-us/dynamics-nav/how-to--sign-up-for-a-microsoft-azure-subscription)
 * A [service principal](https://learn.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli) in Azure (see below).
+
 ## How to use
 
 * Clone or fork this project.
@@ -80,4 +81,5 @@ To check potential changes, use the ``what-if`` flag, e.g.:
 * ``az deployment sub what-if -l <LOCATION> --template-file main.bicep``
 * ``az deployment group what-if -g rg-iac-demo-bicep-xxx --template-file storage.bicep``
 
-Heads up! Remember to delete the created resources in the Azure portal.
+Heads up! Remember to delete the created resources in the Azure portal or by running
+* az group delete --name <RG_NAME>
