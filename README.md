@@ -88,3 +88,5 @@ To check potential changes, use the ``what-if`` flag, e.g.:
 
 Heads up! Remember to delete the created resources in the Azure portal or by running
 * ``az group delete --name ${env:RG_NAME}-xxx``
+
+Optional: add ``--name=<SOME_RANDOM_NAME>`` to the ``az deployment`` command to avoid naming/location conflicts later.
