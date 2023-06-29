@@ -5,6 +5,7 @@ param location string = 'NorwayEast'
 param rgName string // Passed in as parameter
 
 param resourceTags object = {
+  // TODO Should not hardcode!
   Owner: 'reza.b.mirzaei@outlook.com'
   Env: 'test'
 }
