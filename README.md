@@ -20,12 +20,13 @@ Basic knowledge of Azure is required. In addition, you must have the following i
 * In the terminal type:
   * ``az account set --subscription <YOUR_SUBSCRIPTION_ID>``
 * Create a service principal (if you don't already have one). In the terminal type:
-  * ``az ad sp create-for-rbac -n "<YOUR_SPN>" --role="Contributor" --scopes="/subscriptions/<YOUR_SUBSCRIPTION_ID>"
-``
+  * ``az ad sp create-for-rbac -n "<YOUR_SPN>" --role="Contributor" --scopes="/subscriptions/<YOUR_SUBSCRIPTION_ID>"``
 
-__Finally, log out of Azure (``az logout``) to avoid any mishaps using your own login credentials.__ We will use the service principal from now on.
+__Heads up!__ Make sure to:
+1. __Save__ the __password__ generated for the service principal. It is only visible on the output after creation. 
+2. Give the service principal privileges to create resources in your Azure subscription (e.g. ``--role="Contributor"``).
 
-Heads up! Make sure the service principal has privileges to create resources in your Azure subscription (e.g. ``--role="Contributor"``).
+Finally, log out of Azure (``az logout``) to avoid any mishaps using your own login credentials. We will use the service principal from now on.
 
 ### Terraform
 
@@ -38,9 +39,9 @@ ARM_CLIENT_SECRET = "<SPN_CLIENT_SECRET_VALUE>"
 ARM_SUBSCRIPTION_ID = "<YOUR_SUBSCRIPTION_ID>"
 ARM_TENANT_ID = "<YOUR_TENANT_ID>"
 ```
-You can find your __<SPN_APPID_VALUE>__ in the Azure portal, under _Azure Active Directory_ > _App registrations_.
+You can find your __<SPN_APPID_VALUE>__ in the Azure portal, under _Azure Active Directory_ > _App registrations_ > _Application (client) ID_.
 
-The __<SPN_CLIENT_SECRET_VALUE>__ can be found under the same path in the Azure portal, by selecting the service principal and opening its _Certificates & secrets_ tab.
+The __<SPN_CLIENT_SECRET_VALUE>__ is the __password__ generated for the service principle. It is only visible on the output after creation. If you have lost it, you will need to [reset it](https://learn.microsoft.com/en-us/cli/azure/ad/sp/credential?view=azure-cli-latest#az-ad-sp-credential-reset). 
 
 Read more on [Authenticate Terraform to Azure](https://learn.microsoft.com/en-us/azure/developer/terraform/authenticate-to-azure?tabs=bash).
 
