@@ -77,6 +77,9 @@ The __main.bicep__ script will create a resource group in the Azure subscription
 * Open a terminal in the ``bicep`` folder of this prject.
 * In the terminal type:
   * ``az deployment sub create -l <LOCATION> --template-file main.bicep --parameters rgName=${env:RG_NAME}``
+
+``<LOCATION>`` is any [valid azure region](https://azuretracks.com/2021/04/current-azure-region-names-reference/) and determines where the deployment is run from. Not to be confused with the region (location) provided in the bocep file.
+
 * Validate the result by checking your Azure subscription: You have a new reource group in your subscription.
 * Create a storage account in the newly created resource grouo. In the terminal type:
   * ``az deployment group create -g ${env:RG_NAME}-xxx --template-file storage.bicep`` (you will need the actual RG name that was created)
